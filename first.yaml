@@ -1,0 +1,38 @@
+name: Mi First example
+
+on:
+  workflow_dispatch:
+    inputs:
+      mi_variable:
+        description: 'Valor de la variable para reemplazar'
+        required: true
+        default: 'ValorPorDefecto'  # Puedes poner un valor por defecto
+
+jobs:
+  reemplazar_variable:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Comprobar el código fuente
+      uses: actions/checkout@v3
+
+    - name: Configurar variable de entorno
+      run: echo $mi_variable >> $GITHUB_ENV
+
+    - name: Reemplazar variable en el archivo
+      run: |
+        echo "Este es un texto con una variable: $MI_VARIABLE" > ejemplo.txt
+        echo "El texto original en ejemplo.txt:"
+        cat ejemplo.txt
+        envsubst < ejemplo.txt > ejemplo_modificado.txt
+        echo "El archivo modificado:"
+        cat ejemplo_modificado.txt
+
+    - name: Subir cambios si es necesario
+      uses: EndBug/add-and-commit@v7
+      with:
+        author_name: 'GitHub Actions'
+        author_email: 'actions@github.com'
+        message: 'Reemplazar variable en archivo ejemplo.txt'
+        add: 'ejemplo_modificado.txt'
+
