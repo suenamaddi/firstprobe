@@ -16,8 +16,8 @@ jobs:
     - name: Comprobar el código fuente
       uses: actions/checkout@v3
 
-    - name: Configurar variable de entorno
-      run: echo $mi_variable >> $GITHUB_ENV
+    - name: Obtener el valor del input
+      run: echo "MI_VARIABLE=${{ github.event.inputs.mi_variable }}" >> $GITHUB_ENV
 
     - name: Reemplazar variable en el archivo
       run: |
