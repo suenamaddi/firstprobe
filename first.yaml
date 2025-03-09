@@ -28,11 +28,4 @@ jobs:
         echo "El archivo modificado:"
         cat ejemplo_modificado.txt
 
-    - name: Subir cambios si es necesario
-      uses: EndBug/add-and-commit@v7
-      with:
-        author_name: 'GitHub Actions'
-        author_email: 'actions@github.com'
-        message: 'Reemplazar variable en archivo ejemplo.txt'
-        add: 'ejemplo_modificado.txt'
 
