@@ -21,7 +21,7 @@ jobs:
 
     - name: Reemplazar variable en el archivo
       run: |
-        echo "Este es un texto con una variable: $MI_VARIABLE" > ejemplo.txt
+        echo "Este es un texto con una variable: \$MI_VARIABLE" > ejemplo.txt
         echo "El texto original en ejemplo.txt:"
         cat ejemplo.txt
         envsubst < ejemplo.txt > ejemplo_modificado.txt
